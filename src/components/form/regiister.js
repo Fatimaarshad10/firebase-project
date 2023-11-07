@@ -21,5 +21,5 @@ function Register() {
   )
 }
 
-noortae11@A
+// noortae11@A
 export default Register
