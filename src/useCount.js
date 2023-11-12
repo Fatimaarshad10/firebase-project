@@ -1,14 +1,22 @@
 import { useState } from "react"
+
 export const useCount = (initialValue = 0)=>{
-    const [state, setState] = useState(initialValue)
-    const increase = ()=>{
-        setState ((data)=> data + 1)
-    }
-    const decrease = ()=>{
-        setState ((data)=> data - 1)
-    }
-    const restart = ()=>{
-        setState (0)
-    }
-    return {state , increase , decrease , restart}
+const [count , setCount] = useState(initialValue)
+
+const increase = ()=>{
+    setCount((data)=> data + 1)
 }
+ 
+const decrease = ()=>{
+    setCount((data)=> data - 1)
+}
+
+const restart = ()=>{
+    setCount(0)
+}
+return {count , increase  , decrease , restart}
+
+}
+
+
+
