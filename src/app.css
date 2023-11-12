@@ -47,7 +47,7 @@ body {
   border-radius: 50%;
 }
 
-/* input,
+input,
 textarea {
   font-family: "Nunito", sans-serif;
 }
@@ -83,4 +83,4 @@ textarea {
 
 .submitForm:hover {
   cursor: pointer;
-} */
+}

@@ -1,6 +1,5 @@
 import {Navbar} from './pages/navbar'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import Home from './pages/home'
 import Login from './pages/loging'
 import {CreatePost} from './pages/create-post/create-post'
 import './app.css'
@@ -10,10 +9,8 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login/>} />
           <Route path="/createpost" element={<CreatePost/>} />
-
         </Routes>
       </Router>
     </div>
