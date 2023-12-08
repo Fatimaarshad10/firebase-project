@@ -2,14 +2,12 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {addDoc , collection} from 'firebase/firestore'
-import {db , auth} from '../../config/firebase'
-import { useAuthState } from "react-firebase-hooks/auth";
-export const CreateForm = () => {
-
-
+import {db} from '../../config/firebase'
+function CreateForm () {
   const schema = yup.object().shape({
     title: yup.string().required("You must add a title"),
-    description: yup.string().required("You must add a description"),
+    detail: yup.string().required("You must add a detail"),
+    price : yup.number().required("You must add a price")
   });
 
   const {
@@ -19,18 +17,16 @@ export const CreateForm = () => {
     resolver: yupResolver(schema),
   });
 
-const postsRef = collection(db, "posts")
 
 
-  const [user] = useAuthState(auth);
 
+const books = collection(db, "books")
 
   const onCreatePost = async(data) => {
-   await addDoc(postsRef , {
+   await addDoc(books , {
     title : data.title ,
-    description : data.description,
-    username : user?.displayName,
-    id : user?.uid
+    detail : data.detail,
+    price : data.price
    })
   };
 
@@ -41,10 +37,12 @@ const postsRef = collection(db, "posts")
       <form onSubmit={handleSubmit(onCreatePost)}>
         <input placeholder="Title..." {...register("title")} />
         <p style={{ color: "red" }}>{errors.title?.message}</p>
-        <textarea placeholder="Description..." {...register("description")} />
+        <textarea placeholder="Detail..." {...register("detail")} />
+        <input placeholder="Price" {...register("price")} />
         <p style={{ color: "red" }}>{errors.description?.message}</p>
         <input type="submit" className="submitForm" />
       </form>
     </div>
   );
 };
+export default CreateForm
